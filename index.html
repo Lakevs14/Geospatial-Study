@@ -97,13 +97,23 @@
     .methods-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);line-height:1.6}
     .method-num{min-width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:1px}
 
-    /* SVM / ML section styles */
     .accuracy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:2rem}
     .accuracy-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
     .accuracy-val{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1}
     .accuracy-val.good{color:var(--teal)}
-    .accuracy-val.warn{color:var(--amber)}
+    .accuracy-val.neutral{color:var(--blue)}
     .accuracy-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+    .cm-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:14px}
+    .cm-table th{background:var(--blue-light);color:var(--blue);font-weight:500;padding:10px 14px;text-align:center;border:0.5px solid var(--border)}
+    .cm-table td{padding:10px 14px;text-align:center;border:0.5px solid var(--border);color:var(--text);background:var(--white)}
+    .cm-table td.correct{background:var(--teal-light);color:var(--teal);font-weight:500}
+    .cm-table td.incorrect{background:var(--red-light);color:var(--red)}
+
+    .perclass-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:14px}
+    .perclass-table th{background:var(--blue-light);color:var(--blue);font-weight:500;padding:10px 14px;text-align:center;border:0.5px solid var(--border)}
+    .perclass-table td{padding:10px 14px;text-align:center;border:0.5px solid var(--border);color:var(--muted);background:var(--white)}
+    .perclass-table tr:hover td{background:var(--bg)}
 
     .pipeline-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:2rem}
     .pipeline-step{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem}
@@ -183,22 +193,10 @@
     <h2>Study overview</h2>
     <p>This study investigates the relationship between annual average temperature and snow water equivalent across three high-elevation Colorado counties. Using spatially-averaged SNOTEL station data and PRISM-derived temperature rasters, we quantify the strength of temperature–SWE correlations and model long-term trends through linear regression. A support vector machine (SVM) classifier applied to Landsat imagery extends the analysis to land cover change detection at Lake Powell between 1985 and 2025.</p>
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-val">46</div>
-        <div class="stat-label">Years of data<br>1980 – 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val">88</div>
-        <div class="stat-label">SNOTEL stations<br>across Colorado</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val">3</div>
-        <div class="stat-label">Counties analyzed<br>San Juan, Gunnison, Summit</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-val">4km</div>
-        <div class="stat-label">PRISM grid resolution<br>temperature rasters</div>
-      </div>
+      <div class="stat-card"><div class="stat-val">46</div><div class="stat-label">Years of data<br>1980 – 2025</div></div>
+      <div class="stat-card"><div class="stat-val">88</div><div class="stat-label">SNOTEL stations<br>across Colorado</div></div>
+      <div class="stat-card"><div class="stat-val">3</div><div class="stat-label">Counties analyzed<br>San Juan, Gunnison, Summit</div></div>
+      <div class="stat-card"><div class="stat-val">4km</div><div class="stat-label">PRISM grid resolution<br>temperature rasters</div></div>
     </div>
   </div>
 
@@ -240,8 +238,7 @@
     <p>Scatter plots with fitted regression lines and y = mx + b equations for each county. Replace the placeholder below with your exported chart images.</p>
     <div class="chart-placeholder">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <path d="M7 17l3-4 3 3 3-5"/>
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l3-4 3 3 3-5"/>
       </svg>
       <p>Regression plots will be embedded here</p>
     </div>
@@ -254,29 +251,106 @@
     <span class="tag ml">Machine learning</span>
     <p class="section-label">SVM classification</p>
     <h2>Land cover classification — Landsat imagery</h2>
-    <p>A support vector machine (SVM) with an RBF kernel was trained on region-of-interest (ROI) samples drawn from Landsat scenes for both 1985 and 2025. Six spectral bands were used as features, normalized per band using z-score standardization. Training samples were balanced to 5,000 pixels per class to prevent class dominance.</p>
+    <p>A support vector machine (SVM) with an RBF kernel was trained on region-of-interest (ROI) samples drawn from Landsat scenes for both 1985 and 2025. Six spectral bands were used as features, normalized per band using z-score standardization. Training samples were balanced to 5,000 pixels per class. The model was evaluated on a stratified 80/20 hold-out test set (n = 4,000 pixels).</p>
 
+    <!-- Accuracy metric cards -->
     <div class="accuracy-grid">
       <div class="accuracy-card">
-        <div class="accuracy-val good">OA</div>
-        <div class="accuracy-label">Overall Accuracy<br>Held-out test set</div>
+        <div class="accuracy-val good">99.98%</div>
+        <div class="accuracy-label">Overall Accuracy (OA)<br>Held-out test set</div>
       </div>
       <div class="accuracy-card">
-        <div class="accuracy-val good">AA</div>
-        <div class="accuracy-label">Average Accuracy<br>Per-class mean</div>
+        <div class="accuracy-val good">99.98%</div>
+        <div class="accuracy-label">Average Accuracy (AA)<br>Per-class mean</div>
       </div>
       <div class="accuracy-card">
-        <div class="accuracy-val good">κ</div>
-        <div class="accuracy-label">Cohen's Kappa<br>Agreement score</div>
+        <div class="accuracy-val good">0.9995</div>
+        <div class="accuracy-label">Cohen's Kappa (κ)<br>Agreement score</div>
       </div>
       <div class="accuracy-card">
-        <div class="accuracy-val neutral">80/20</div>
-        <div class="accuracy-label">Train/test split<br>Stratified, seed 42</div>
+        <div class="accuracy-val neutral">4,000</div>
+        <div class="accuracy-label">Test set pixels<br>Stratified, seed 42</div>
       </div>
     </div>
 
-    <p style="margin-top:1.5rem;font-size:13px;color:var(--muted)">Replace OA, AA, and κ above with your printed output values once the notebook has been run.</p>
+    <!-- Confusion matrix -->
+    <h2 style="margin-top:3rem">Confusion matrix</h2>
+    <p>Rows represent true labels; columns represent predicted labels. Diagonal cells (green) indicate correct classifications.</p>
+    <div style="overflow-x:auto;margin-top:1rem">
+      <table class="cm-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Predicted: Non-water (0)</th>
+            <th>Predicted: Water (1)</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:500;color:var(--text);text-align:left;background:var(--blue-light);color:var(--blue)">True: Non-water (0)</td>
+            <td class="correct">1,999</td>
+            <td class="incorrect">1</td>
+            <td>2,000</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;text-align:left;background:var(--blue-light);color:var(--blue)">True: Water (1)</td>
+            <td class="incorrect">0</td>
+            <td class="correct">2,000</td>
+            <td>2,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <!-- Per-class report -->
+    <h2 style="margin-top:3rem">Per-class precision, recall &amp; F1</h2>
+    <p>Per-class metrics from the held-out test set. Both classes achieve near-perfect scores across all metrics.</p>
+    <div style="overflow-x:auto;margin-top:1rem">
+      <table class="perclass-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-score</th>
+            <th>Support</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:left;font-weight:500;color:var(--text)">0 — Non-water</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>2,000</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;font-weight:500;color:var(--text)">1 — Water</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>2,000</td>
+          </tr>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="text-align:left;color:var(--muted)">Macro avg</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>4,000</td>
+          </tr>
+          <tr>
+            <td style="text-align:left;color:var(--muted)">Weighted avg</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>1.00</td>
+            <td>4,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pipeline -->
     <h2 style="margin-top:3rem">Classification pipeline</h2>
     <div class="pipeline-steps">
       <div class="pipeline-step">
@@ -302,12 +376,13 @@
       <div class="pipeline-step">
         <div class="step-num">Step 05</div>
         <div class="step-title">Accuracy assessment</div>
-        <div class="step-desc">Overall accuracy, average accuracy, Cohen's kappa, confusion matrix, and per-class precision/recall reported on the held-out test set.</div>
+        <div class="step-desc">OA, AA, Cohen's kappa, confusion matrix, and per-class precision/recall/F1 reported on the held-out test set.</div>
       </div>
     </div>
 
+    <!-- Classified maps -->
     <h2 style="margin-top:3rem">Classified maps</h2>
-    <p>Classified land cover outputs for 1985 and 2025 will be displayed here as exported images from the notebook.</p>
+    <p>Classified land cover outputs for 1985 and 2025. Replace placeholders with your exported images from the notebook.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
       <div class="chart-placeholder" style="min-height:200px">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -330,36 +405,18 @@
     <p>Binary water masks were derived from the SVM classifications for each year. Pixel-level comparison between the 1985 and 2025 classified rasters quantifies water area gained, lost, and stable over the 40-year period. Results are reported in km².</p>
 
     <div class="change-grid">
-      <div class="change-card">
-        <div class="change-val neutral">— km²</div>
-        <div class="change-label">Water area in 1985</div>
-      </div>
-      <div class="change-card">
-        <div class="change-val neutral">— km²</div>
-        <div class="change-label">Water area in 2025</div>
-      </div>
-      <div class="change-card">
-        <div class="change-val lost">— km²</div>
-        <div class="change-label">Water lost (1985 → 2025)</div>
-      </div>
-      <div class="change-card">
-        <div class="change-val gained">— km²</div>
-        <div class="change-label">Water gained (new water)</div>
-      </div>
-      <div class="change-card">
-        <div class="change-val neutral">— km²</div>
-        <div class="change-label">Stable water (both years)</div>
-      </div>
-      <div class="change-card">
-        <div class="change-val lost">—%</div>
-        <div class="change-label">Net % change from 1985</div>
-      </div>
+      <div class="change-card"><div class="change-val neutral">— km²</div><div class="change-label">Water area in 1985</div></div>
+      <div class="change-card"><div class="change-val neutral">— km²</div><div class="change-label">Water area in 2025</div></div>
+      <div class="change-card"><div class="change-val lost">— km²</div><div class="change-label">Water lost (1985 → 2025)</div></div>
+      <div class="change-card"><div class="change-val gained">— km²</div><div class="change-label">Water gained (new water)</div></div>
+      <div class="change-card"><div class="change-val neutral">— km²</div><div class="change-label">Stable water (both years)</div></div>
+      <div class="change-card"><div class="change-val lost">—%</div><div class="change-label">Net % change from 1985</div></div>
     </div>
 
     <p style="margin-top:1.5rem;font-size:13px;color:var(--muted)">Replace the — placeholders above with your printed output values from the notebook.</p>
 
     <h2 style="margin-top:3rem">Change map</h2>
-    <p>Four-class change map encoded as: non-water in both years, stable water, water lost, and water gained.</p>
+    <p>Four-class change map: non-water in both years, stable water, water lost, and water gained.</p>
     <div class="chart-placeholder" style="min-height:300px;margin-top:1.5rem">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
       <p>water_change_map.png will be embedded here</p>
@@ -393,7 +450,7 @@
       </li>
       <li>
         <span class="method-num">4</span>
-        <span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel trained on balanced ROI samples from Landsat 1985 and 2025 scenes. Z-score normalized spectral features. Tile-based prediction applied to full scenes.</span>
+        <span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel (C=10, gamma='scale') trained on balanced ROI samples from Landsat 1985 and 2025 scenes. Z-score normalized spectral features across 6 bands. Tile-based prediction (256×256) applied to full scenes.</span>
       </li>
       <li>
         <span class="method-num">5</span>
@@ -415,24 +472,15 @@
     <div class="team-grid">
       <div class="team-card">
         <div class="team-avatar">AU</div>
-        <div>
-          <div class="team-name">Author Name</div>
-          <div class="team-role">Lead Researcher</div>
-        </div>
+        <div><div class="team-name">Author Name</div><div class="team-role">Lead Researcher</div></div>
       </div>
       <div class="team-card">
         <div class="team-avatar">AU</div>
-        <div>
-          <div class="team-name">Author Name</div>
-          <div class="team-role">GIS &amp; Data Analysis</div>
-        </div>
+        <div><div class="team-name">Author Name</div><div class="team-role">GIS &amp; Data Analysis</div></div>
       </div>
       <div class="team-card">
         <div class="team-avatar">AU</div>
-        <div>
-          <div class="team-name">Author Name</div>
-          <div class="team-role">Climate Science</div>
-        </div>
+        <div><div class="team-name">Author Name</div><div class="team-role">Climate Science</div></div>
       </div>
     </div>
   </div>
