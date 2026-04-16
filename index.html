@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -37,8 +37,8 @@
       padding:0 2rem;
     }
     .nav-brand{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--blue);letter-spacing:-0.3px}
-    .nav-links{display:flex;gap:2rem;list-style:none}
-    .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--blue)}
     .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
     .nav-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:.3s}
@@ -83,10 +83,12 @@
     .finding-card.sj .finding-county{color:var(--blue)}
     .finding-card.gu .finding-county{color:var(--teal)}
     .finding-card.su .finding-county{color:var(--amber)}
+    .finding-card.co .finding-county{color:var(--red)}
     .finding-r{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:.25rem}
     .finding-card.sj .finding-r{color:var(--blue)}
     .finding-card.gu .finding-r{color:var(--teal)}
     .finding-card.su .finding-r{color:var(--amber)}
+    .finding-card.co .finding-r{color:var(--red)}
     .finding-desc{font-size:13px;color:var(--muted);line-height:1.6}
     .finding-p{font-size:12px;color:var(--muted);margin-top:.75rem;border-top:0.5px solid var(--border);padding-top:.75rem}
 
@@ -127,6 +129,7 @@
     .change-val.lost{color:var(--red)}
     .change-val.gained{color:var(--teal)}
     .change-val.neutral{color:var(--blue)}
+
     .change-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
 
     .legend-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
@@ -136,6 +139,18 @@
     .tag{display:inline-block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:1rem}
     .tag.ml{color:var(--blue);background:var(--blue-light)}
     .tag.change{color:var(--red);background:var(--red-light)}
+    .tag.gee{color:var(--teal);background:var(--teal-light)}
+    .tag.statewide{color:var(--amber);background:var(--amber-light)}
+
+    .gee-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:2rem}
+    .gee-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem}
+    .gee-card-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.5rem}
+    .gee-card-val{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.25rem}
+    .gee-card-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+    .statewide-card{background:var(--white);border:2px solid var(--amber-light);border-radius:12px;padding:2rem;margin-top:2rem;text-align:center}
+    .statewide-r{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--amber);line-height:1;margin-bottom:.5rem}
+    .statewide-label{font-size:13px;color:var(--muted)}
 
     .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:2rem}
     .team-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;gap:12px;align-items:center}
@@ -146,7 +161,7 @@
     footer{background:var(--white);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:13px;color:var(--muted)}
     footer a{color:var(--blue);text-decoration:none}
 
-    @media(max-width:640px){
+    @media(max-width:768px){
       .nav-links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);flex-direction:column;padding:1rem 2rem;gap:1rem}
       .nav-links.open{display:flex}
       .nav-toggle{display:flex}
@@ -162,6 +177,8 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#results">Results</a></li>
+      <li><a href="#statewide">Statewide</a></li>
+      <li><a href="#gee">GEE Extraction</a></li>
       <li><a href="#ml">ML Classification</a></li>
       <li><a href="#change">Change Detection</a></li>
       <li><a href="#methods">Methods</a></li>
@@ -177,12 +194,12 @@
     <div class="hero">
       <span class="hero-tag">Peer-reviewed research</span>
       <h1>Snow Water Equivalent &amp; <em>Temperature Dynamics</em> in Colorado Counties</h1>
-      <p class="hero-sub">A longitudinal analysis of annual SWE trends across San Juan, Gunnison, and Summit counties from 1980 to 2025, integrating PRISM climate data, SNOTEL station records, and SVM-based Landsat classification.</p>
+      <p class="hero-sub">A longitudinal analysis of annual SWE trends across San Juan, Gunnison, and Summit counties from 1980 to 2025, integrating PRISM climate data, SNOTEL station records, Google Earth Engine imagery, and SVM-based Landsat classification.</p>
       <div class="hero-meta">
         <span><span class="dot"></span>1980 – 2025</span>
         <span><span class="dot"></span>88 weather stations</span>
-        <span><span class="dot"></span>3 counties</span>
-        <span><span class="dot"></span>PRISM, SNOTEL &amp; Landsat</span>
+        <span><span class="dot"></span>3 counties + statewide</span>
+        <span><span class="dot"></span>PRISM, SNOTEL, GEE &amp; Landsat</span>
       </div>
     </div>
   </div>
@@ -191,21 +208,21 @@
   <div id="abstract" class="section">
     <p class="section-label">At a glance</p>
     <h2>Study overview</h2>
-    <p>This study investigates the relationship between annual average temperature and snow water equivalent across three high-elevation Colorado counties. Using spatially-averaged SNOTEL station data and PRISM-derived temperature rasters, we quantify the strength of temperature–SWE correlations and model long-term trends through linear regression. A support vector machine (SVM) classifier applied to Landsat imagery extends the analysis to land cover change detection at Lake Powell between 1985 and 2025.</p>
+    <p>This study investigates the relationship between annual average temperature and snow water equivalent across three high-elevation Colorado counties and at the statewide scale. Using spatially-averaged SNOTEL station data and PRISM-derived temperature rasters, we quantify the strength of temperature–SWE correlations and model long-term trends through linear regression. Landsat imagery extracted via Google Earth Engine extends the analysis to land cover change detection at Lake Powell between 1985 and 2025 using a support vector machine (SVM) classifier.</p>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-val">46</div><div class="stat-label">Years of data<br>1980 – 2025</div></div>
       <div class="stat-card"><div class="stat-val">88</div><div class="stat-label">SNOTEL stations<br>across Colorado</div></div>
-      <div class="stat-card"><div class="stat-val">3</div><div class="stat-label">Counties analyzed<br>San Juan, Gunnison, Summit</div></div>
-      <div class="stat-card"><div class="stat-val">4km</div><div class="stat-label">PRISM grid resolution<br>temperature rasters</div></div>
+      <div class="stat-card"><div class="stat-val">4</div><div class="stat-label">Spatial scales<br>3 counties + statewide</div></div>
+      <div class="stat-card"><div class="stat-val">30m</div><div class="stat-label">Landsat resolution<br>GEE export</div></div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- CORRELATION RESULTS -->
+  <!-- COUNTY CORRELATION RESULTS -->
   <div id="results" class="section">
-    <p class="section-label">Key findings</p>
-    <h2>Correlation results</h2>
+    <p class="section-label">County-level findings</p>
+    <h2>Correlation results — by county</h2>
     <p>All three counties exhibit a statistically significant negative correlation between annual average temperature and snow water equivalent, consistent with expectations for high-elevation snowpack dynamics.</p>
     <div class="findings-grid">
       <div class="finding-card sj">
@@ -234,13 +251,108 @@
   <!-- REGRESSION CHARTS -->
   <div id="data" class="section">
     <p class="section-label">Visualizations</p>
-    <h2>Linear regression plots</h2>
+    <h2>Linear regression plots — county level</h2>
     <p>Scatter plots with fitted regression lines and y = mx + b equations for each county. Replace the placeholder below with your exported chart images.</p>
     <div class="chart-placeholder">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5">
         <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l3-4 3 3 3-5"/>
       </svg>
-      <p>Regression plots will be embedded here</p>
+      <p>County regression plots will be embedded here</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STATEWIDE ANALYSIS -->
+  <div id="statewide" class="section">
+    <span class="tag statewide">Statewide analysis</span>
+    <p class="section-label">Colorado — all stations</p>
+    <h2>Statewide temperature &amp; SWE correlation</h2>
+    <p>A statewide Pearson correlation analysis was conducted using Colorado average annual temperature data merged with a statewide yearly SWE average derived from all 88 SNOTEL stations. Both linear regression trends for temperature and SWE were modeled independently over the 1980–2025 period and visualized using Plotly interactive charts.</p>
+
+    <div class="statewide-card">
+      <div class="statewide-r">r = —</div>
+      <div class="statewide-label">Statewide Pearson correlation coefficient (co_avg_temp vs. swe_average, 1980–2025)<br>Replace — with your printed value from the notebook</div>
+    </div>
+
+    <h2 style="margin-top:3rem">Statewide regression details</h2>
+    <div class="gee-grid">
+      <div class="gee-card">
+        <div class="gee-card-label">Temperature trend</div>
+        <div class="gee-card-val">y = mx + b</div>
+        <div class="gee-card-desc">OLS linear regression of Colorado average annual temperature over 1980–2025. Replace with your printed slope and intercept.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">SWE trend</div>
+        <div class="gee-card-val">y = mx + b</div>
+        <div class="gee-card-desc">OLS linear regression of statewide yearly SWE average over 1980–2025. Replace with your printed slope and intercept.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Data sources</div>
+        <div class="gee-card-val">co_m_temp_1980_2025.csv</div>
+        <div class="gee-card-desc">Merged with yearly_swe_average.csv on year. Rows with missing values dropped prior to correlation calculation.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Visualization</div>
+        <div class="gee-card-val">Plotly interactive HTML</div>
+        <div class="gee-card-desc">Combined dual-panel regression plot and standalone scatter with OLS trendline exported as HTML files.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:3rem">Statewide interactive plot</h2>
+    <p>The interactive Plotly regression chart can be embedded directly using an iframe once exported. Replace the placeholder below with your saved HTML file or a screenshot.</p>
+    <div class="chart-placeholder" style="min-height:300px">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l3-4 3 3 3-5"/>
+      </svg>
+      <p>swe_temp_regression_plot.html — embed via &lt;iframe&gt; or replace with screenshot</p>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:1rem">To embed the Plotly HTML directly: <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px">&lt;iframe src="swe_temp_regression_plot.html" width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;</code></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- GEE IMAGE EXTRACTION -->
+  <div id="gee" class="section">
+    <span class="tag gee">Google Earth Engine</span>
+    <p class="section-label">Image extraction</p>
+    <h2>Landsat image acquisition via GEE</h2>
+    <p>Landsat surface reflectance imagery for the Lake Powell region was acquired using the Google Earth Engine Python API. Two scenes were exported — Landsat 5 TM for June 1985 and Landsat 9 OLI/TIRS for June 2025 — clipped to the defined region of interest and exported as GeoTIFFs to Google Drive for downstream SVM classification.</p>
+
+    <div class="gee-grid">
+      <div class="gee-card">
+        <div class="gee-card-label">1985 scene</div>
+        <div class="gee-card-val">Landsat 5 TM — June 14, 1985</div>
+        <div class="gee-card-desc">Collection: LANDSAT/LT05/C02/T1_L2. Bands: SR_B1–B5, SR_B7. Mosaicked and clipped to ROI.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">2025 scene</div>
+        <div class="gee-card-val">Landsat 9 OLI — June 4, 2025</div>
+        <div class="gee-card-desc">Collection: LANDSAT/LC09/C02/T1_L2. Bands: SR_B1–B7. Mosaicked and clipped to ROI.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Region of interest</div>
+        <div class="gee-card-val">Lake Powell, Utah/Arizona</div>
+        <div class="gee-card-desc">ROI: −111.64° to −110.94° W, 36.92° to 37.19° N. Exported at 30m resolution.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Export format</div>
+        <div class="gee-card-val">GeoTIFF to Google Drive</div>
+        <div class="gee-card-desc">Both tasks completed successfully. Export used ee.batch.Export.image.toDrive with maxPixels=1e13.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:3rem">Exported imagery</h2>
+    <p>Replace the placeholders below with your exported Landsat false-color or true-color composite previews.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
+      <div class="chart-placeholder" style="min-height:220px">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <p>landsat_1985_june.tif — preview</p>
+      </div>
+      <div class="chart-placeholder" style="min-height:220px">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <p>landsat_2025_june.tif — preview</p>
+      </div>
     </div>
   </div>
 
@@ -251,9 +363,8 @@
     <span class="tag ml">Machine learning</span>
     <p class="section-label">SVM classification</p>
     <h2>Land cover classification — Landsat imagery</h2>
-    <p>A support vector machine (SVM) with an RBF kernel was trained on region-of-interest (ROI) samples drawn from Landsat scenes for both 1985 and 2025. Six spectral bands were used as features, normalized per band using z-score standardization. Training samples were balanced to 5,000 pixels per class. The model was evaluated on a stratified 80/20 hold-out test set (n = 4,000 pixels).</p>
+    <p>A support vector machine (SVM) with an RBF kernel was trained on region-of-interest (ROI) samples drawn from the GEE-exported Landsat scenes for both 1985 and 2025. Six spectral bands were used as features, normalized per band using z-score standardization. Training samples were balanced to 5,000 pixels per class. The model was evaluated on a stratified 80/20 hold-out test set (n = 4,000 pixels).</p>
 
-    <!-- Accuracy metric cards -->
     <div class="accuracy-grid">
       <div class="accuracy-card">
         <div class="accuracy-val good">99.98%</div>
@@ -273,7 +384,6 @@
       </div>
     </div>
 
-    <!-- Confusion matrix -->
     <h2 style="margin-top:3rem">Confusion matrix</h2>
     <p>Rows represent true labels; columns represent predicted labels. Diagonal cells (green) indicate correct classifications.</p>
     <div style="overflow-x:auto;margin-top:1rem">
@@ -288,7 +398,7 @@
         </thead>
         <tbody>
           <tr>
-            <td style="font-weight:500;color:var(--text);text-align:left;background:var(--blue-light);color:var(--blue)">True: Non-water (0)</td>
+            <td style="font-weight:500;text-align:left;background:var(--blue-light);color:var(--blue)">True: Non-water (0)</td>
             <td class="correct">1,999</td>
             <td class="incorrect">1</td>
             <td>2,000</td>
@@ -303,7 +413,6 @@
       </table>
     </div>
 
-    <!-- Per-class report -->
     <h2 style="margin-top:3rem">Per-class precision, recall &amp; F1</h2>
     <p>Per-class metrics from the held-out test set. Both classes achieve near-perfect scores across all metrics.</p>
     <div style="overflow-x:auto;margin-top:1rem">
@@ -320,69 +429,59 @@
         <tbody>
           <tr>
             <td style="text-align:left;font-weight:500;color:var(--text)">0 — Non-water</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>2,000</td>
+            <td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td>
           </tr>
           <tr>
             <td style="text-align:left;font-weight:500;color:var(--text)">1 — Water</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>2,000</td>
+            <td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td>
           </tr>
           <tr style="border-top:1px solid var(--border)">
             <td style="text-align:left;color:var(--muted)">Macro avg</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>4,000</td>
+            <td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td>
           </tr>
           <tr>
             <td style="text-align:left;color:var(--muted)">Weighted avg</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>1.00</td>
-            <td>4,000</td>
+            <td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Pipeline -->
     <h2 style="margin-top:3rem">Classification pipeline</h2>
     <div class="pipeline-steps">
       <div class="pipeline-step">
         <div class="step-num">Step 01</div>
-        <div class="step-title">Image loading &amp; normalization</div>
-        <div class="step-desc">Landsat scenes loaded via rasterio. Per-band z-score normalization applied globally across each image.</div>
+        <div class="step-title">GEE image extraction</div>
+        <div class="step-desc">Landsat 5 (1985) and Landsat 9 (2025) scenes exported from Google Earth Engine as 30m GeoTIFFs to Google Drive.</div>
       </div>
       <div class="pipeline-step">
         <div class="step-num">Step 02</div>
-        <div class="step-title">ROI sampling</div>
-        <div class="step-desc">Training pixels extracted from shapefile ROIs. Up to 20,000 pixels per ROI, balanced to 5,000 per class with replacement if needed.</div>
+        <div class="step-title">Image normalization</div>
+        <div class="step-desc">Scenes loaded via rasterio. Per-band z-score normalization applied globally across each image.</div>
       </div>
       <div class="pipeline-step">
         <div class="step-num">Step 03</div>
+        <div class="step-title">ROI sampling</div>
+        <div class="step-desc">Training pixels extracted from shapefile ROIs. Up to 20,000 pixels per ROI, balanced to 5,000 per class.</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">Step 04</div>
         <div class="step-title">SVM training</div>
         <div class="step-desc">SVC with RBF kernel, C=10, gamma='scale', class_weight='balanced'. Trained on pooled 1985 + 2025 samples.</div>
       </div>
       <div class="pipeline-step">
-        <div class="step-num">Step 04</div>
+        <div class="step-num">Step 05</div>
         <div class="step-title">Tile-based prediction</div>
-        <div class="step-desc">Full rasters classified in 256×256 pixel tiles to manage memory. Output saved as single-band uint8 GeoTIFF.</div>
+        <div class="step-desc">Full rasters classified in 256×256 pixel tiles. Output saved as single-band uint8 GeoTIFF.</div>
       </div>
       <div class="pipeline-step">
-        <div class="step-num">Step 05</div>
+        <div class="step-num">Step 06</div>
         <div class="step-title">Accuracy assessment</div>
-        <div class="step-desc">OA, AA, Cohen's kappa, confusion matrix, and per-class precision/recall/F1 reported on the held-out test set.</div>
+        <div class="step-desc">OA, AA, Cohen's kappa, confusion matrix, and per-class F1 reported on the held-out test set.</div>
       </div>
     </div>
 
-    <!-- Classified maps -->
     <h2 style="margin-top:3rem">Classified maps</h2>
-    <p>Classified land cover outputs for 1985 and 2025. Replace placeholders with your exported images from the notebook.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
       <div class="chart-placeholder" style="min-height:200px">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -402,7 +501,7 @@
     <span class="tag change">Change detection</span>
     <p class="section-label">Lake Powell</p>
     <h2>Water body change — 1985 to 2025</h2>
-    <p>Binary water masks were derived from the SVM classifications for each year. Pixel-level comparison between the 1985 and 2025 classified rasters quantifies water area gained, lost, and stable over the 40-year period. Results are reported in km².</p>
+    <p>Binary water masks were derived from the SVM classifications for each year. Pixel-level comparison between the 1985 and 2025 classified rasters quantifies water area gained, lost, and stable over the 40-year period.</p>
 
     <div class="change-grid">
       <div class="change-card"><div class="change-val neutral">285.55 km²</div><div class="change-label">Water area in 1985</div></div>
@@ -438,27 +537,31 @@
     <ul class="methods-list">
       <li>
         <span class="method-num">1</span>
-        <span><strong style="color:var(--text);font-weight:500">SWE data</strong> — Annual SWE averages computed from NRCS SNOTEL stations within each county boundary. Station values averaged to produce a single county-level SWE estimate per year.</span>
+        <span><strong style="color:var(--text);font-weight:500">SWE data</strong> — Annual SWE averages computed from NRCS SNOTEL stations within each county boundary. Station values averaged to produce county-level and statewide SWE estimates per year.</span>
       </li>
       <li>
         <span class="method-num">2</span>
-        <span><strong style="color:var(--text);font-weight:500">Temperature data</strong> — Annual average temperatures derived from PRISM 4km gridded rasters, clipped to county boundaries in GIS. Zonal statistics (mean) extracted per year.</span>
+        <span><strong style="color:var(--text);font-weight:500">Temperature data</strong> — Annual average temperatures derived from PRISM 4km gridded rasters (county level) and a statewide Colorado average temperature dataset (co_m_temp_1980_2025.csv), clipped to boundaries in GIS.</span>
       </li>
       <li>
         <span class="method-num">3</span>
-        <span><strong style="color:var(--text);font-weight:500">Statistical analysis</strong> — Pearson correlation coefficients computed between annual temperature and SWE for each county. Linear regression models fitted and visualized using Python (scipy, matplotlib).</span>
+        <span><strong style="color:var(--text);font-weight:500">Statistical analysis</strong> — Pearson correlation coefficients computed at both county and statewide scales. Linear regression models (OLS) fitted using scipy.stats.linregress and visualized using matplotlib and Plotly.</span>
       </li>
       <li>
         <span class="method-num">4</span>
-        <span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel (C=10, gamma='scale') trained on balanced ROI samples from Landsat 1985 and 2025 scenes. Z-score normalized spectral features across 6 bands. Tile-based prediction (256×256) applied to full scenes.</span>
+        <span><strong style="color:var(--text);font-weight:500">GEE image extraction</strong> — Landsat 5 TM (June 14, 1985) and Landsat 9 OLI (June 4, 2025) surface reflectance scenes acquired via Google Earth Engine Python API. Exported as 30m GeoTIFFs to Google Drive.</span>
       </li>
       <li>
         <span class="method-num">5</span>
-        <span><strong style="color:var(--text);font-weight:500">Change detection</strong> — Binary water masks derived from SVM outputs compared pixel-by-pixel. Water area change quantified in km² accounting for raster CRS and pixel resolution.</span>
+        <span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel (C=10, gamma='scale') trained on balanced ROI samples. Z-score normalized spectral features across 6 bands. Tile-based prediction applied to full scenes.</span>
       </li>
       <li>
         <span class="method-num">6</span>
-        <span><strong style="color:var(--text);font-weight:500">Significance testing</strong> — Two-tailed p-values reported for each correlation. Significance threshold set at α = 0.05. SVM accuracy reported via OA, AA, Cohen's kappa, and per-class F1 scores.</span>
+        <span><strong style="color:var(--text);font-weight:500">Change detection</strong> — Binary water masks derived from SVM outputs compared pixel-by-pixel. Water area change quantified in km² accounting for raster CRS and pixel resolution.</span>
+      </li>
+      <li>
+        <span class="method-num">7</span>
+        <span><strong style="color:var(--text);font-weight:500">Significance testing</strong> — Two-tailed p-values reported for county-level correlations. Significance threshold set at α = 0.05. SVM accuracy reported via OA, AA, Cohen's kappa, and per-class F1 scores.</span>
       </li>
     </ul>
   </div>
@@ -486,7 +589,7 @@
   </div>
 
   <footer>
-    <p>Colorado SWE &amp; Temperature Study &nbsp;·&nbsp; Data: <a href="https://www.nrcs.usda.gov/wps/portal/wcc/home/snowClimateMonitoring/snowWaterEquivalent/" target="_blank">NRCS SNOTEL</a> &amp; <a href="https://prism.oregonstate.edu" target="_blank">PRISM Climate Group</a> &amp; <a href="https://www.usgs.gov/landsat-missions" target="_blank">USGS Landsat</a> &nbsp;·&nbsp; <a href="https://github.com" target="_blank">GitHub</a> &nbsp;·&nbsp; &copy; 2025</p>
+    <p>Colorado SWE &amp; Temperature Study &nbsp;·&nbsp; Data: <a href="https://www.nrcs.usda.gov/wps/portal/wcc/home/snowClimateMonitoring/snowWaterEquivalent/" target="_blank">NRCS SNOTEL</a> &amp; <a href="https://prism.oregonstate.edu" target="_blank">PRISM Climate Group</a> &amp; <a href="https://www.usgs.gov/landsat-missions" target="_blank">USGS Landsat</a> &amp; <a href="https://earthengine.google.com" target="_blank">Google Earth Engine</a> &nbsp;·&nbsp; <a href="https://github.com" target="_blank">GitHub</a> &nbsp;·&nbsp; &copy; 2025</p>
   </footer>
 
   <script>
