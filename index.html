@@ -133,8 +133,8 @@
     <span class="nav-brand">Colorado SWE Study</span>
     <ul class="nav-links" id="navLinks">
       <li><a href="#abstract">Abstract</a></li>
-      <li><a href="#results">Results</a></li>
       <li><a href="#statewide">Statewide</a></li>
+      <li><a href="#results">Results</a></li>
       <li><a href="#gee">GEE Extraction</a></li>
       <li><a href="#ml">ML Classification</a></li>
       <li><a href="#change">Change Detection</a></li>
@@ -149,7 +149,7 @@
   <!-- HERO -->
   <div style="background:var(--white);border-bottom:1px solid var(--border)">
     <div class="hero">
-      <span class="hero-tag">Peer-reviewed research</span>
+      <span class="hero-tag">Directed-Study Research</span>
       <h1>Snow Water Equivalent &amp; <em>Temperature Dynamics</em> in Colorado Counties</h1>
       <p class="hero-sub">A longitudinal analysis of annual SWE trends across San Juan, Gunnison, and Summit counties from 1980 to 2025, integrating PRISM climate data, SNOTEL station records, Google Earth Engine imagery, and SVM-based Landsat classification.</p>
       <div class="hero-meta">
@@ -172,39 +172,6 @@
       <div class="stat-card"><div class="stat-val">4</div><div class="stat-label">Spatial scales<br>3 counties + statewide</div></div>
       <div class="stat-card"><div class="stat-val">30m</div><div class="stat-label">Landsat resolution<br>GEE export</div></div>
     </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- COUNTY RESULTS -->
-  <div id="results" class="section">
-    <p class="section-label">County-level findings</p>
-    <h2>Correlation results — by county</h2>
-    <p>All three counties exhibit a statistically significant negative correlation between annual average temperature and snow water equivalent, consistent with expectations for high-elevation snowpack dynamics.</p>
-    <div class="findings-grid">
-      <div class="finding-card sj">
-        <div class="finding-county">San Juan County</div>
-        <div class="finding-r">r = −0.566</div>
-        <div class="finding-desc">Moderate-strong negative correlation. Strongest temperature–SWE relationship of the three counties studied.</div>
-        <div class="finding-p">p &lt; 0.001 &nbsp;·&nbsp; n = 46</div>
-      </div>
-      <div class="finding-card gu">
-        <div class="finding-county">Gunnison County</div>
-        <div class="finding-r">r = −0.413</div>
-        <div class="finding-desc">Moderate negative correlation. Statistically significant relationship between warming trends and snowpack decline.</div>
-        <div class="finding-p">p = 0.004 &nbsp;·&nbsp; n = 46</div>
-      </div>
-      <div class="finding-card su">
-        <div class="finding-county">Summit County</div>
-        <div class="finding-r">r = −0.317</div>
-        <div class="finding-desc">Weak-moderate negative correlation. Significant at the 95% confidence level.</div>
-        <div class="finding-p">p = 0.032 &nbsp;·&nbsp; n = 46</div>
-      </div>
-    </div>
-
-    <h2 style="margin-top:3rem">Linear regression plots — county level</h2>
-    <p>Scatter plots with fitted OLS regression lines for each county. Points are labeled by year; the dashed line shows the temperature–SWE trend.</p>
-    <img src="county_swe_temp_regression.png" alt="County-level SWE vs Temperature OLS regression plots" class="chart-img">
   </div>
 
   <hr class="divider">
@@ -254,6 +221,39 @@
     <h2 style="margin-top:3rem">Statewide regression plot</h2>
     <p>Scatter plot of statewide yearly SWE average against Colorado average temperature (1980–2025). Each point is labeled with its year; the dashed crimson line shows the OLS fit.</p>
     <img src="swe_temp_regression.png" alt="Statewide SWE vs Colorado Average Temperature OLS regression plot (1980–2025)" class="chart-img">
+  </div>
+
+  <hr class="divider">
+
+  <!-- COUNTY RESULTS -->
+  <div id="results" class="section">
+    <p class="section-label">County-level findings</p>
+    <h2>Correlation results — by county</h2>
+    <p>All three counties exhibit a statistically significant negative correlation between annual average temperature and snow water equivalent, consistent with expectations for high-elevation snowpack dynamics.</p>
+    <div class="findings-grid">
+      <div class="finding-card sj">
+        <div class="finding-county">San Juan County</div>
+        <div class="finding-r">r = −0.566</div>
+        <div class="finding-desc">Moderate-strong negative correlation. Strongest temperature–SWE relationship of the three counties studied.</div>
+        <div class="finding-p">p &lt; 0.001 &nbsp;·&nbsp; n = 46</div>
+      </div>
+      <div class="finding-card gu">
+        <div class="finding-county">Gunnison County</div>
+        <div class="finding-r">r = −0.413</div>
+        <div class="finding-desc">Moderate negative correlation. Statistically significant relationship between warming trends and snowpack decline.</div>
+        <div class="finding-p">p = 0.004 &nbsp;·&nbsp; n = 46</div>
+      </div>
+      <div class="finding-card su">
+        <div class="finding-county">Summit County</div>
+        <div class="finding-r">r = −0.317</div>
+        <div class="finding-desc">Weak-moderate negative correlation. Significant at the 95% confidence level.</div>
+        <div class="finding-p">p = 0.032 &nbsp;·&nbsp; n = 46</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:3rem">Linear regression plots — county level</h2>
+    <p>Scatter plots with fitted OLS regression lines for each county. Points are labeled by year; the dashed line shows the temperature–SWE trend.</p>
+    <img src="county_swe_temp_regression.png" alt="County-level SWE vs Temperature OLS regression plots" class="chart-img">
   </div>
 
   <hr class="divider">
@@ -429,9 +429,8 @@
     <p class="section-label">Research team</p>
     <h2>Authors</h2>
     <div class="team-grid">
-      <div class="team-card"><div class="team-avatar">AU</div><div><div class="team-name">Author Name</div><div class="team-role">Lead Researcher</div></div></div>
-      <div class="team-card"><div class="team-avatar">AU</div><div><div class="team-name">Author Name</div><div class="team-role">GIS &amp; Data Analysis</div></div></div>
-      <div class="team-card"><div class="team-avatar">AU</div><div><div class="team-name">Author Name</div><div class="team-role">Climate Science</div></div></div>
+      <div class="team-card"><div class="team-avatar">AM</div><div><div class="team-name">Andong Ma</div><div class="team-role">Faculty Mentor</div></div></div>
+      <div class="team-card"><div class="team-avatar">KM</div><div><div class="team-name">Kevin Morales</div><div class="team-role">GIS &amp; Data Analyst</div></div></div>
     </div>
   </div>
 
