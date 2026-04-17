@@ -150,7 +150,7 @@
   <div style="background:var(--white);border-bottom:1px solid var(--border)">
     <div class="hero">
       <span class="hero-tag">Directed-Study Research</span>
-      <h1>Snow Water Equivalent &amp; <em>Temperature Dynamics</em> in Colorado Counties</h1>
+      <h1>Snow Water Equivalence, <em>Temperature Dynamics</em> &amp; SVM-Based Change Detection in Colorado</h1>
       <p class="hero-sub">A longitudinal analysis of annual SWE trends across San Juan, Gunnison, and Summit counties from 1980 to 2025, integrating PRISM climate data, SNOTEL station records, Google Earth Engine imagery, and SVM-based Landsat classification.</p>
       <div class="hero-meta">
         <span><span class="dot"></span>1980 – 2025</span>
@@ -163,7 +163,7 @@
 
   <!-- ABSTRACT -->
   <div id="abstract" class="section">
-    <p class="section-label">At a glance</p>
+    <span class="tag gee">Introduction</span>
     <h2>Study overview</h2>
     <p>This study investigates the relationship between annual average temperature and snow water equivalent across three high-elevation Colorado counties and at the statewide scale. Using spatially-averaged SNOTEL station data and PRISM-derived temperature rasters, we quantify the strength of temperature–SWE correlations and model long-term trends through linear regression. Landsat imagery extracted via Google Earth Engine extends the analysis to land cover change detection at Lake Powell between 1985 and 2025 using a support vector machine (SVM) classifier.</p>
     <div class="stats-grid">
@@ -227,8 +227,9 @@
 
   <!-- COUNTY RESULTS -->
   <div id="results" class="section">
-    <p class="section-label">County-level findings</p>
-    <h2>Correlation results — by county</h2>
+    <span class="tag ml">County-level findings</span>
+    <p class="section-label">Correlation results — by county</p>
+    <h2>Temperature &amp; SWE — county analysis</h2>
     <p>All three counties exhibit a statistically significant negative correlation between annual average temperature and snow water equivalent, consistent with expectations for high-elevation snowpack dynamics.</p>
     <div class="findings-grid">
       <div class="finding-card sj">
@@ -409,8 +410,9 @@
 
   <!-- METHODS -->
   <div id="methods" class="section">
-    <p class="section-label">Methodology</p>
-    <h2>Data &amp; methods</h2>
+    <span class="tag ml">Methodology</span>
+    <p class="section-label">Data &amp; methods</p>
+    <h2>Methods overview</h2>
     <ul class="methods-list">
       <li><span class="method-num">1</span><span><strong style="color:var(--text);font-weight:500">SWE data</strong> — Annual SWE averages computed from NRCS SNOTEL stations within each county boundary. Station values averaged to produce county-level and statewide SWE estimates per year.</span></li>
       <li><span class="method-num">2</span><span><strong style="color:var(--text);font-weight:500">Temperature data</strong> — Annual average temperatures derived from PRISM 4km gridded rasters (county level) and a statewide Colorado average temperature dataset (co_m_temp_1980_2025.csv), clipped to boundaries in GIS.</span></li>
@@ -426,8 +428,9 @@
 
   <!-- TEAM -->
   <div id="team" class="section">
-    <p class="section-label">Research team</p>
-    <h2>Authors</h2>
+    <span class="tag gee">Research team</span>
+    <p class="section-label">Authors</p>
+    <h2>Contributors</h2>
     <div class="team-grid">
       <div class="team-card"><div class="team-avatar">AM</div><div><div class="team-name">Andong Ma</div><div class="team-role">Faculty Mentor</div></div></div>
       <div class="team-card"><div class="team-avatar">KM</div><div><div class="team-name">Kevin Morales</div><div class="team-role">GIS &amp; Data Analyst</div></div></div>
