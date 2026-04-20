@@ -1,4 +1,4 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,14 +6,6 @@ html<!DOCTYPE html>
   <title>Colorado SWE Study</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-   /* Show interactive iframe only on large screens (≥1024px) */
-    .reg-chart-large { display: none; }
-    .reg-chart-small { display: block; }
-
-    @media (min-width: 1024px) {
-      .reg-chart-large { display: block; }
-      .reg-chart-small { display: none; }
-    }
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
       --nav-h:60px;
@@ -33,142 +25,99 @@ html<!DOCTYPE html>
       --bg:#F8F7F4;
       --white:#ffffff;
     }
-
     body{font-family:var(--sans);color:var(--text);background:var(--bg);font-size:16px;line-height:1.7}
-
-    nav{
-      position:sticky;top:0;z-index:100;
-      background:var(--white);
-      border-bottom:1px solid var(--border);
-      height:var(--nav-h);
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 2rem;
-    }
+    nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
     .nav-brand{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--blue);letter-spacing:-0.3px}
     .nav-links{display:flex;gap:1.5rem;list-style:none}
     .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--blue)}
     .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
     .nav-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:.3s}
-
-    .hero{
-      background:var(--white);
-      border-bottom:1px solid var(--border);
-      padding:5rem 2rem 4rem;
-      text-align:center;
-      max-width:860px;
-      margin:0 auto;
-    }
-    .hero-tag{
-      display:inline-block;
-      font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-      color:var(--teal);background:var(--teal-light);
-      padding:4px 12px;border-radius:20px;margin-bottom:1.5rem;
-      font-weight:500;
-    }
+    .hero{background:var(--white);border-bottom:1px solid var(--border);padding:5rem 2rem 4rem;text-align:center;max-width:860px;margin:0 auto}
+    .hero-tag{display:inline-block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);background:var(--teal-light);padding:4px 12px;border-radius:20px;margin-bottom:1.5rem;font-weight:500}
     .hero h1{font-family:var(--serif);font-size:clamp(26px,4vw,42px);font-weight:400;line-height:1.25;color:var(--text);margin-bottom:1rem}
     .hero h1 em{color:var(--blue);font-style:italic}
     .hero-sub{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto 2rem;line-height:1.8}
     .hero-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:13px;color:var(--muted)}
     .hero-meta span{display:flex;align-items:center;gap:6px}
     .dot{width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block}
-
     .section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
     .section-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:.75rem}
     .section h2{font-family:var(--serif);font-size:clamp(20px,3vw,30px);font-weight:400;margin-bottom:1.5rem;color:var(--text)}
     .section p{color:var(--muted);max-width:720px;margin-bottom:1rem;line-height:1.85}
-
     .divider{border:none;border-top:1px solid var(--border);margin:0}
-
     .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:2rem}
     .stat-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
     .stat-val{font-family:var(--serif);font-size:32px;color:var(--blue);font-weight:400;line-height:1}
     .stat-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
-
     .findings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:2rem}
     .finding-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem}
     .finding-county{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;margin-bottom:.5rem}
     .finding-card.sj .finding-county{color:var(--blue)}
     .finding-card.gu .finding-county{color:var(--teal)}
     .finding-card.su .finding-county{color:var(--amber)}
-    .finding-card.co .finding-county{color:var(--red)}
     .finding-r{font-family:var(--serif);font-size:28px;font-weight:400;margin-bottom:.25rem}
     .finding-card.sj .finding-r{color:var(--blue)}
     .finding-card.gu .finding-r{color:var(--teal)}
     .finding-card.su .finding-r{color:var(--amber)}
-    .finding-card.co .finding-r{color:var(--red)}
     .finding-desc{font-size:13px;color:var(--muted);line-height:1.6}
     .finding-p{font-size:12px;color:var(--muted);margin-top:.75rem;border-top:0.5px solid var(--border);padding-top:.75rem}
-
+    .chart-img{width:100%;border-radius:12px;border:0.5px solid var(--border);margin-top:2rem;display:block}
     .chart-placeholder{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:2rem;margin-top:2rem;text-align:center;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem}
     .chart-placeholder p{font-size:13px;color:var(--muted)}
-
     .methods-list{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:12px}
     .methods-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);line-height:1.6}
     .method-num{min-width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:1px}
-
     .accuracy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:2rem}
     .accuracy-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
     .accuracy-val{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1}
     .accuracy-val.good{color:var(--teal)}
     .accuracy-val.neutral{color:var(--blue)}
     .accuracy-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
-
     .cm-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:14px}
     .cm-table th{background:var(--blue-light);color:var(--blue);font-weight:500;padding:10px 14px;text-align:center;border:0.5px solid var(--border)}
     .cm-table td{padding:10px 14px;text-align:center;border:0.5px solid var(--border);color:var(--text);background:var(--white)}
     .cm-table td.correct{background:var(--teal-light);color:var(--teal);font-weight:500}
     .cm-table td.incorrect{background:var(--red-light);color:var(--red)}
-
     .perclass-table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:14px}
     .perclass-table th{background:var(--blue-light);color:var(--blue);font-weight:500;padding:10px 14px;text-align:center;border:0.5px solid var(--border)}
     .perclass-table td{padding:10px 14px;text-align:center;border:0.5px solid var(--border);color:var(--muted);background:var(--white)}
     .perclass-table tr:hover td{background:var(--bg)}
-
     .pipeline-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:2rem}
     .pipeline-step{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem}
     .step-num{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--blue);margin-bottom:.5rem}
     .step-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.4rem}
     .step-desc{font-size:12px;color:var(--muted);line-height:1.6}
-
     .change-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:2rem}
     .change-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
     .change-val{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1}
     .change-val.lost{color:var(--red)}
     .change-val.gained{color:var(--teal)}
     .change-val.neutral{color:var(--blue)}
-
     .change-label{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
-
     .legend-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
     .legend-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
     .legend-swatch{width:14px;height:14px;border-radius:3px;flex-shrink:0}
-
     .tag{display:inline-block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:1rem}
     .tag.ml{color:var(--blue);background:var(--blue-light)}
     .tag.change{color:var(--red);background:var(--red-light)}
     .tag.gee{color:var(--teal);background:var(--teal-light)}
     .tag.statewide{color:var(--amber);background:var(--amber-light)}
-
     .gee-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:2rem}
     .gee-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem}
     .gee-card-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.5rem}
     .gee-card-val{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.25rem}
     .gee-card-desc{font-size:12px;color:var(--muted);line-height:1.5}
-
     .statewide-card{background:var(--white);border:2px solid var(--amber-light);border-radius:12px;padding:2rem;margin-top:2rem;text-align:center}
     .statewide-r{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--amber);line-height:1;margin-bottom:.5rem}
     .statewide-label{font-size:13px;color:var(--muted)}
-
     .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:2rem}
     .team-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;gap:12px;align-items:center}
     .team-avatar{width:42px;height:42px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .team-name{font-size:14px;font-weight:500;color:var(--text)}
     .team-role{font-size:12px;color:var(--muted)}
-
     footer{background:var(--white);border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:13px;color:var(--muted)}
     footer a{color:var(--blue);text-decoration:none}
-
     @media(max-width:768px){
       .nav-links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);flex-direction:column;padding:1rem 2rem;gap:1rem}
       .nav-links.open{display:flex}
@@ -184,8 +133,8 @@ html<!DOCTYPE html>
     <span class="nav-brand">Colorado SWE Study</span>
     <ul class="nav-links" id="navLinks">
       <li><a href="#abstract">Abstract</a></li>
-      <li><a href="#results">Results</a></li>
       <li><a href="#statewide">Statewide</a></li>
+      <li><a href="#results">Results</a></li>
       <li><a href="#gee">GEE Extraction</a></li>
       <li><a href="#ml">ML Classification</a></li>
       <li><a href="#change">Change Detection</a></li>
@@ -200,8 +149,8 @@ html<!DOCTYPE html>
   <!-- HERO -->
   <div style="background:var(--white);border-bottom:1px solid var(--border)">
     <div class="hero">
-      <span class="hero-tag">Peer-reviewed research</span>
-      <h1>Snow Water Equivalent &amp; <em>Temperature Dynamics</em> in Colorado Counties</h1>
+      <span class="hero-tag">Directed-Study Research</span>
+      <h1>Snow Water Equivalence, <em>Temperature Dynamics</em> &amp; SVM-Based Change Detection in Colorado</h1>
       <p class="hero-sub">A longitudinal analysis of annual SWE trends across San Juan, Gunnison, and Summit counties from 1980 to 2025, integrating PRISM climate data, SNOTEL station records, Google Earth Engine imagery, and SVM-based Landsat classification.</p>
       <div class="hero-meta">
         <span><span class="dot"></span>1980 – 2025</span>
@@ -214,7 +163,7 @@ html<!DOCTYPE html>
 
   <!-- ABSTRACT -->
   <div id="abstract" class="section">
-    <p class="section-label">At a glance</p>
+    <span class="tag gee">Introduction</span>
     <h2>Study overview</h2>
     <p>This study investigates the relationship between annual average temperature and snow water equivalent across three high-elevation Colorado counties and at the statewide scale. Using spatially-averaged SNOTEL station data and PRISM-derived temperature rasters, we quantify the strength of temperature–SWE correlations and model long-term trends through linear regression. Landsat imagery extracted via Google Earth Engine extends the analysis to land cover change detection at Lake Powell between 1985 and 2025 using a support vector machine (SVM) classifier.</p>
     <div class="stats-grid">
@@ -227,10 +176,60 @@ html<!DOCTYPE html>
 
   <hr class="divider">
 
-  <!-- COUNTY CORRELATION RESULTS -->
+  <!-- STATEWIDE -->
+  <div id="statewide" class="section">
+    <span class="tag statewide">Statewide analysis</span>
+    <p class="section-label">Colorado — all stations</p>
+    <h2>Statewide temperature &amp; SWE correlation</h2>
+    <p>A statewide Pearson correlation analysis was conducted using Colorado average annual temperature data merged with a statewide yearly SWE average derived from all 88 SNOTEL stations. OLS linear regression was fitted over the full 1980–2025 period. Results indicate a moderate-strong negative relationship: as average annual temperature increases, statewide snowpack declines significantly.</p>
+
+    <!-- Hero r value -->
+    <div class="statewide-card">
+      <div class="statewide-r">r = −0.637</div>
+      <div class="statewide-label">Statewide Pearson correlation coefficient &nbsp;·&nbsp; co_avg_temp vs. swe_average, 1980–2025 &nbsp;·&nbsp; p &lt; 0.001</div>
+    </div>
+
+    <!-- Full stat cards -->
+    <div class="stats-grid" style="margin-top:1.5rem">
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber);font-size:26px">−0.637</div><div class="stat-label">Pearson r<br>Statewide</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber);font-size:26px">0.406</div><div class="stat-label">R²<br>Variance explained</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber);font-size:20px">1.93×10⁻⁶</div><div class="stat-label">p-value<br>Two-tailed</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber);font-size:26px">−1.568</div><div class="stat-label">Slope<br>inches / °C</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber);font-size:26px">46</div><div class="stat-label">n<br>Years</div></div>
+    </div>
+
+    <h2 style="margin-top:3rem">Regression interpretation</h2>
+    <div class="gee-grid">
+      <div class="gee-card">
+        <div class="gee-card-label">Regression equation</div>
+        <div class="gee-card-val">y = −1.568x + 17.380</div>
+        <div class="gee-card-desc">For each 1°C rise in Colorado average annual temperature, statewide SWE declines by approximately 1.57 inches on average.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Significance</div>
+        <div class="gee-card-val">p = 1.93 × 10⁻⁶</div>
+        <div class="gee-card-desc">Highly statistically significant at α = 0.05. The probability of observing this relationship by chance is less than 0.0002%.</div>
+      </div>
+      <div class="gee-card">
+        <div class="gee-card-label">Variance explained</div>
+        <div class="gee-card-val">R² = 0.406</div>
+        <div class="gee-card-desc">Temperature explains approximately 41% of year-to-year SWE variability. Remaining variance reflects precipitation timing, storm patterns, and elevation effects.</div>
+      </div>
+    </div>
+
+    <!-- Statewide regression PNG -->
+    <h2 style="margin-top:3rem">Statewide regression plot</h2>
+    <p>Scatter plot of statewide yearly SWE average against Colorado average temperature (1980–2025). Each point is labeled with its year; the dashed crimson line shows the OLS fit.</p>
+    <img src="swe_temp_regression.png" alt="Statewide SWE vs Colorado Average Temperature OLS regression plot (1980–2025)" class="chart-img">
+  </div>
+
+  <hr class="divider">
+
+  <!-- COUNTY RESULTS -->
   <div id="results" class="section">
-    <p class="section-label">County-level findings</p>
-    <h2>Correlation results — by county</h2>
+    <span class="tag ml">County-level findings</span>
+    <p class="section-label">Correlation results — by county</p>
+    <h2>Temperature &amp; SWE — county analysis</h2>
     <p>All three counties exhibit a statistically significant negative correlation between annual average temperature and snow water equivalent, consistent with expectations for high-elevation snowpack dynamics.</p>
     <div class="findings-grid">
       <div class="finding-card sj">
@@ -252,165 +251,20 @@ html<!DOCTYPE html>
         <div class="finding-p">p = 0.032 &nbsp;·&nbsp; n = 46</div>
       </div>
     </div>
+
+    <h2 style="margin-top:3rem">Linear regression plots — county level</h2>
+    <p>Scatter plots with fitted OLS regression lines for each county. Points are labeled by year; the dashed line shows the temperature–SWE trend.</p>
+    <img src="county_swe_temp_regression.png" alt="County-level SWE vs Temperature OLS regression plots" class="chart-img">
   </div>
 
   <hr class="divider">
 
-  <!-- REGRESSION CHARTS -->
-  <div id="data" class="section">
-    <p class="section-label">Visualizations</p>
-    <h2>Linear regression plots — county level</h2>
-    <p>Scatter plots with fitted regression lines and y = mx + b equations for each county. Replace the placeholder below with your exported chart images.</p>
-    <div class="chart-placeholder">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l3-4 3 3 3-5"/>
-      </svg>
-      <p>County regression plots will be embedded here</p>
-    </div>
-  </div>
-
-  <hr class="divider">
-  
-   <!-- STATEWIDE REGRESSION SECTION — paste this block into your existing website -->
-  <div id="statewide" class="section">
-    <span class="tag statewide">Statewide analysis</span>
-    <p class="section-label">Colorado — all stations</p>
-    <h2>Statewide temperature &amp; SWE linear regression</h2>
-    <p>OLS linear regression was applied independently to Colorado average annual temperature and statewide SWE average across all 88 SNOTEL stations from 1980–2025. Both variables were modeled over year using <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px">scipy.stats.linregress</code> and visualized as a dual-panel interactive Plotly chart.</p>
-
-    <!-- Regression equation cards -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:2rem">
-
-      <!-- Temperature equation card -->
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem">
-        <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--blue);margin-bottom:.75rem">Colorado Average Temperature</div>
-        <div style="font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:1rem">y = 0.0227x − 37.9948</div>
-        <div style="display:flex;flex-direction:column;gap:0">
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Slope (m)</span><span style="font-weight:500;color:var(--text)">+0.0227 °C / year</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Intercept (b)</span><span style="font-weight:500;color:var(--text)">−37.9948</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">R²</span><span style="font-weight:500;color:var(--text)">0.2496 (25.0%)</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Pearson R</span><span style="font-weight:500;color:var(--text)">+0.4996</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">P-value</span><span style="font-weight:500;color:var(--teal)">4.08 × 10⁻⁴ ✓ significant</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Std. Error</span><span style="font-weight:500;color:var(--text)">0.0059</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Sample size (n)</span><span style="font-weight:500;color:var(--text)">46</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span style="color:var(--muted)">Total gain (46 yrs)</span><span style="font-weight:500;color:var(--blue)">+1.04 °C</span></div>
-        </div>
-      </div>
-
-      <!-- SWE equation card -->
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem">
-        <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.75rem">Yearly SWE Average</div>
-        <div style="font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:1rem">y = −0.0239x + 53.4903</div>
-        <div style="display:flex;flex-direction:column;gap:0">
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Slope (m)</span><span style="font-weight:500;color:var(--text)">−0.0239 in / year</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Intercept (b)</span><span style="font-weight:500;color:var(--text)">+53.4903</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">R²</span><span style="font-weight:500;color:var(--text)">0.0456 (4.6%)</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Pearson R</span><span style="font-weight:500;color:var(--text)">−0.2136</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">P-value</span><span style="font-weight:500;color:var(--amber)">0.154 ✗ not significant</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Std. Error</span><span style="font-weight:500;color:var(--text)">0.0165</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Sample size (n)</span><span style="font-weight:500;color:var(--text)">46</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span style="color:var(--muted)">Total loss (46 yrs)</span><span style="font-weight:500;color:var(--red)">−1.10 inches</span></div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Interpretation callouts -->
-    <div style="background:var(--teal-light);border-left:4px solid var(--teal);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1.25rem">
-      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.4rem">Temperature trend — statistically significant</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:0;max-width:100%">Colorado average temperature has risen approximately <strong style="color:var(--text)">+1.04°C over the 46-year study period</strong> at a rate of +0.023°C per year. This trend is statistically significant (p &lt; 0.001) and the model explains 25% of annual temperature variance — a robust warming signal.</p>
-    </div>
-
-    <div style="background:var(--amber-light);border-left:4px solid var(--amber);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1rem">
-      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--amber);margin-bottom:.4rem">SWE trend — not statistically significant (p = 0.154)</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:0;max-width:100%">While the regression shows a statewide SWE decline of approximately <strong style="color:var(--text)">−1.10 inches over 46 years</strong>, this trend does not clear the significance threshold. High interannual variability driven by ENSO (El Niño–Southern Oscillation) cycles — which produce large year-to-year swings in Colorado snowpack — introduces substantial noise that the linear model cannot resolve, suppressing the R² to just 4.6%. County-level correlations (e.g., San Juan r = −0.566) are stronger, likely because local topographic controls partially dampen ENSO-driven variance.</p>
-    </div>
-
-    <!-- Interactive chart — large screens only; static PNG on smaller screens -->
-    <h2 style="margin-top:2.5rem">Regression plots</h2>
-    <p>Dual-panel OLS regression chart for Colorado average temperature and statewide SWE average, 1980–2025. Hover over points for year-by-year values.</p>
-
-    <!-- Large screen: interactive Plotly iframe (≥1024px) -->
-    <div class="reg-chart-large" style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-top:1.5rem">
-      <iframe
-        src="combined_regression_plots.html"
-        width="100%"
-        height="540"
-        title="Statewide SWE and Temperature Regression — Interactive Plotly Chart"
-        style="display:block;border:none">
-      </iframe>
-      <div style="font-size:12px;color:var(--muted);padding:.65rem 1rem;border-top:0.5px solid var(--border);background:var(--bg)">
-        Interactive chart — combined_regression_plots.html must be in the same directory as this page.
-      </div>
-    </div>
-
-    <!-- Small/medium screens: static PNG fallback -->
-    <div class="reg-chart-small" style="margin-top:1.5rem">
-      <img
-        src="combined_regression_plots.png"
-        alt="Statewide SWE and Temperature Linear Regression 1980–2025"
-        style="width:100%;border-radius:12px;border:0.5px solid var(--border);display:block">
-      <p style="font-size:12px;color:var(--muted);margin-top:.5rem">Static chart — export combined_regression_plots.png from your notebook and place it in the same directory as this page.</p>
-    </div>
-
-  </div>
-
-  <!-- STATEWIDE ANALYSIS -->
-  <div id="statewide" class="section">
-    <span class="tag statewide">Statewide analysis</span>
-    <p class="section-label">Colorado — all stations</p>
-    <h2>Statewide temperature &amp; SWE correlation</h2>
-    <p>A statewide Pearson correlation analysis was conducted using Colorado average annual temperature data merged with a statewide yearly SWE average derived from all 88 SNOTEL stations. Both linear regression trends for temperature and SWE were modeled independently over the 1980–2025 period and visualized using Plotly interactive charts.</p>
-
-    <div class="statewide-card">
-      <div class="statewide-r">r = —</div>
-      <div class="statewide-label">Statewide Pearson correlation coefficient (co_avg_temp vs. swe_average, 1980–2025)<br>Replace — with your printed value from the notebook</div>
-    </div>
-
-    <h2 style="margin-top:3rem">Statewide regression details</h2>
-    <div class="gee-grid">
-      <div class="gee-card">
-        <div class="gee-card-label">Temperature trend</div>
-        <div class="gee-card-val">y = mx + b</div>
-        <div class="gee-card-desc">OLS linear regression of Colorado average annual temperature over 1980–2025. Replace with your printed slope and intercept.</div>
-      </div>
-      <div class="gee-card">
-        <div class="gee-card-label">SWE trend</div>
-        <div class="gee-card-val">y = mx + b</div>
-        <div class="gee-card-desc">OLS linear regression of statewide yearly SWE average over 1980–2025. Replace with your printed slope and intercept.</div>
-      </div>
-      <div class="gee-card">
-        <div class="gee-card-label">Data sources</div>
-        <div class="gee-card-val">co_m_temp_1980_2025.csv</div>
-        <div class="gee-card-desc">Merged with yearly_swe_average.csv on year. Rows with missing values dropped prior to correlation calculation.</div>
-      </div>
-      <div class="gee-card">
-        <div class="gee-card-label">Visualization</div>
-        <div class="gee-card-val">Plotly interactive HTML</div>
-        <div class="gee-card-desc">Combined dual-panel regression plot and standalone scatter with OLS trendline exported as HTML files.</div>
-      </div>
-    </div>
-
-    <h2 style="margin-top:3rem">Statewide interactive plot</h2>
-    <p>The interactive Plotly regression chart can be embedded directly using an iframe once exported. Replace the placeholder below with your saved HTML file or a screenshot.</p>
-    <div class="chart-placeholder" style="min-height:300px">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 17l3-4 3 3 3-5"/>
-      </svg>
-      <p>swe_temp_regression_plot.html — embed via &lt;iframe&gt; or replace with screenshot</p>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:1rem">To embed the Plotly HTML directly: <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px">&lt;iframe src="swe_temp_regression_plot.html" width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;</code></p>
-  </div>
-
-  <hr class="divider">
-
-  <!-- GEE IMAGE EXTRACTION -->
+  <!-- GEE -->
   <div id="gee" class="section">
     <span class="tag gee">Google Earth Engine</span>
     <p class="section-label">Image extraction</p>
     <h2>Landsat image acquisition via GEE</h2>
     <p>Landsat surface reflectance imagery for the Lake Powell region was acquired using the Google Earth Engine Python API. Two scenes were exported — Landsat 5 TM for June 1985 and Landsat 9 OLI/TIRS for June 2025 — clipped to the defined region of interest and exported as GeoTIFFs to Google Drive for downstream SVM classification.</p>
-
     <div class="gee-grid">
       <div class="gee-card">
         <div class="gee-card-label">1985 scene</div>
@@ -434,46 +288,46 @@ html<!DOCTYPE html>
       </div>
     </div>
 
-    <h2 style="margin-top:3rem">Exported imagery</h2>
-    <p>Replace the placeholders below with your exported Landsat false-color or true-color composite previews.</p>
+    <h2 style="margin-top:3rem">True color composites — Lake Powell</h2>
+    <p>Raw Landsat imagery rendered as true color composites (Red–Green–Blue) for the Lake Powell region of interest. These scenes serve as the visual basis for SVM classification and illustrate the dramatic change in surface water extent between the two acquisition dates.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
-      <div class="chart-placeholder" style="min-height:220px">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>landsat_1985_june.tif — preview</p>
+      <div>
+        <p style="font-size:12px;font-weight:500;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">1985 — Landsat 5 TM &nbsp;·&nbsp; June 14</p>
+        <img src="landsat_1985.png" alt="Landsat 5 true color composite Lake Powell June 1985" class="chart-img" style="margin-top:0">
       </div>
-      <div class="chart-placeholder" style="min-height:220px">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>landsat_2025_june.tif — preview</p>
+      <div>
+        <p style="font-size:12px;font-weight:500;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">2025 — Landsat 9 OLI &nbsp;·&nbsp; June 4</p>
+        <img src="landsat_2025.png" alt="Landsat 9 true color composite Lake Powell June 2025" class="chart-img" style="margin-top:0">
+      </div>
+    </div>
+
+    <h2 style="margin-top:3rem">Classified imagery — Lake Powell</h2>
+    <p>SVM-classified binary water masks for 1985 and 2025. The reduction in water extent over 40 years is visually apparent between the two scenes.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
+      <div>
+        <p style="font-size:12px;font-weight:500;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">1985 — Classified water mask</p>
+        <img src="classified_1985.png" alt="SVM classified water mask 1985" class="chart-img" style="margin-top:0">
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:500;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">2025 — Classified water mask</p>
+        <img src="classified_2025.png" alt="SVM classified water mask 2025" class="chart-img" style="margin-top:0">
       </div>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- SVM / ML SECTION -->
+  <!-- ML -->
   <div id="ml" class="section">
     <span class="tag ml">Machine learning</span>
     <p class="section-label">SVM classification</p>
     <h2>Land cover classification — Landsat imagery</h2>
     <p>A support vector machine (SVM) with an RBF kernel was trained on region-of-interest (ROI) samples drawn from the GEE-exported Landsat scenes for both 1985 and 2025. Six spectral bands were used as features, normalized per band using z-score standardization. Training samples were balanced to 5,000 pixels per class. The model was evaluated on a stratified 80/20 hold-out test set (n = 4,000 pixels).</p>
-
     <div class="accuracy-grid">
-      <div class="accuracy-card">
-        <div class="accuracy-val good">99.98%</div>
-        <div class="accuracy-label">Overall Accuracy (OA)<br>Held-out test set</div>
-      </div>
-      <div class="accuracy-card">
-        <div class="accuracy-val good">99.98%</div>
-        <div class="accuracy-label">Average Accuracy (AA)<br>Per-class mean</div>
-      </div>
-      <div class="accuracy-card">
-        <div class="accuracy-val good">0.9995</div>
-        <div class="accuracy-label">Cohen's Kappa (κ)<br>Agreement score</div>
-      </div>
-      <div class="accuracy-card">
-        <div class="accuracy-val neutral">4,000</div>
-        <div class="accuracy-label">Test set pixels<br>Stratified, seed 42</div>
-      </div>
+      <div class="accuracy-card"><div class="accuracy-val good">99.98%</div><div class="accuracy-label">Overall Accuracy (OA)<br>Held-out test set</div></div>
+      <div class="accuracy-card"><div class="accuracy-val good">99.98%</div><div class="accuracy-label">Average Accuracy (AA)<br>Per-class mean</div></div>
+      <div class="accuracy-card"><div class="accuracy-val good">0.9995</div><div class="accuracy-label">Cohen's Kappa (κ)<br>Agreement score</div></div>
+      <div class="accuracy-card"><div class="accuracy-val neutral">4,000</div><div class="accuracy-label">Test set pixels<br>Stratified, seed 42</div></div>
     </div>
 
     <h2 style="margin-top:3rem">Confusion matrix</h2>
@@ -481,25 +335,16 @@ html<!DOCTYPE html>
     <div style="overflow-x:auto;margin-top:1rem">
       <table class="cm-table">
         <thead>
-          <tr>
-            <th></th>
-            <th>Predicted: Non-water (0)</th>
-            <th>Predicted: Water (1)</th>
-            <th>Total</th>
-          </tr>
+          <tr><th></th><th>Predicted: Non-water (0)</th><th>Predicted: Water (1)</th><th>Total</th></tr>
         </thead>
         <tbody>
           <tr>
             <td style="font-weight:500;text-align:left;background:var(--blue-light);color:var(--blue)">True: Non-water (0)</td>
-            <td class="correct">1,999</td>
-            <td class="incorrect">1</td>
-            <td>2,000</td>
+            <td class="correct">1,999</td><td class="incorrect">1</td><td>2,000</td>
           </tr>
           <tr>
             <td style="font-weight:500;text-align:left;background:var(--blue-light);color:var(--blue)">True: Water (1)</td>
-            <td class="incorrect">0</td>
-            <td class="correct">2,000</td>
-            <td>2,000</td>
+            <td class="incorrect">0</td><td class="correct">2,000</td><td>2,000</td>
           </tr>
         </tbody>
       </table>
@@ -510,79 +355,25 @@ html<!DOCTYPE html>
     <div style="overflow-x:auto;margin-top:1rem">
       <table class="perclass-table">
         <thead>
-          <tr>
-            <th>Class</th>
-            <th>Precision</th>
-            <th>Recall</th>
-            <th>F1-score</th>
-            <th>Support</th>
-          </tr>
+          <tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1-score</th><th>Support</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td style="text-align:left;font-weight:500;color:var(--text)">0 — Non-water</td>
-            <td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td>
-          </tr>
-          <tr>
-            <td style="text-align:left;font-weight:500;color:var(--text)">1 — Water</td>
-            <td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td>
-          </tr>
-          <tr style="border-top:1px solid var(--border)">
-            <td style="text-align:left;color:var(--muted)">Macro avg</td>
-            <td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td>
-          </tr>
-          <tr>
-            <td style="text-align:left;color:var(--muted)">Weighted avg</td>
-            <td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td>
-          </tr>
+          <tr><td style="text-align:left;font-weight:500;color:var(--text)">0 — Non-water</td><td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td></tr>
+          <tr><td style="text-align:left;font-weight:500;color:var(--text)">1 — Water</td><td>1.00</td><td>1.00</td><td>1.00</td><td>2,000</td></tr>
+          <tr style="border-top:1px solid var(--border)"><td style="text-align:left;color:var(--muted)">Macro avg</td><td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td></tr>
+          <tr><td style="text-align:left;color:var(--muted)">Weighted avg</td><td>1.00</td><td>1.00</td><td>1.00</td><td>4,000</td></tr>
         </tbody>
       </table>
     </div>
 
     <h2 style="margin-top:3rem">Classification pipeline</h2>
     <div class="pipeline-steps">
-      <div class="pipeline-step">
-        <div class="step-num">Step 01</div>
-        <div class="step-title">GEE image extraction</div>
-        <div class="step-desc">Landsat 5 (1985) and Landsat 9 (2025) scenes exported from Google Earth Engine as 30m GeoTIFFs to Google Drive.</div>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">Step 02</div>
-        <div class="step-title">Image normalization</div>
-        <div class="step-desc">Scenes loaded via rasterio. Per-band z-score normalization applied globally across each image.</div>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">Step 03</div>
-        <div class="step-title">ROI sampling</div>
-        <div class="step-desc">Training pixels extracted from shapefile ROIs. Up to 20,000 pixels per ROI, balanced to 5,000 per class.</div>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">Step 04</div>
-        <div class="step-title">SVM training</div>
-        <div class="step-desc">SVC with RBF kernel, C=10, gamma='scale', class_weight='balanced'. Trained on pooled 1985 + 2025 samples.</div>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">Step 05</div>
-        <div class="step-title">Tile-based prediction</div>
-        <div class="step-desc">Full rasters classified in 256×256 pixel tiles. Output saved as single-band uint8 GeoTIFF.</div>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">Step 06</div>
-        <div class="step-title">Accuracy assessment</div>
-        <div class="step-desc">OA, AA, Cohen's kappa, confusion matrix, and per-class F1 reported on the held-out test set.</div>
-      </div>
-    </div>
-
-    <h2 style="margin-top:3rem">Classified maps</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:1.5rem">
-      <div class="chart-placeholder" style="min-height:200px">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Classified map — 1985</p>
-      </div>
-      <div class="chart-placeholder" style="min-height:200px">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        <p>Classified map — 2025</p>
-      </div>
+      <div class="pipeline-step"><div class="step-num">Step 01</div><div class="step-title">GEE image extraction</div><div class="step-desc">Landsat 5 (1985) and Landsat 9 (2025) scenes exported from Google Earth Engine as 30m GeoTIFFs to Google Drive.</div></div>
+      <div class="pipeline-step"><div class="step-num">Step 02</div><div class="step-title">Image normalization</div><div class="step-desc">Scenes loaded via rasterio. Per-band z-score normalization applied globally across each image.</div></div>
+      <div class="pipeline-step"><div class="step-num">Step 03</div><div class="step-title">ROI sampling</div><div class="step-desc">Training pixels extracted from shapefile ROIs. Up to 20,000 pixels per ROI, balanced to 5,000 per class.</div></div>
+      <div class="pipeline-step"><div class="step-num">Step 04</div><div class="step-title">SVM training</div><div class="step-desc">SVC with RBF kernel, C=10, gamma='scale', class_weight='balanced'. Trained on pooled 1985 + 2025 samples.</div></div>
+      <div class="pipeline-step"><div class="step-num">Step 05</div><div class="step-title">Tile-based prediction</div><div class="step-desc">Full rasters classified in 256×256 pixel tiles. Output saved as single-band uint8 GeoTIFF.</div></div>
+      <div class="pipeline-step"><div class="step-num">Step 06</div><div class="step-title">Accuracy assessment</div><div class="step-desc">OA, AA, Cohen's kappa, confusion matrix, and per-class F1 reported on the held-out test set.</div></div>
     </div>
   </div>
 
@@ -594,7 +385,6 @@ html<!DOCTYPE html>
     <p class="section-label">Lake Powell</p>
     <h2>Water body change — 1985 to 2025</h2>
     <p>Binary water masks were derived from the SVM classifications for each year. Pixel-level comparison between the 1985 and 2025 classified rasters quantifies water area gained, lost, and stable over the 40-year period.</p>
-
     <div class="change-grid">
       <div class="change-card"><div class="change-val neutral">285.55 km²</div><div class="change-label">Water area in 1985</div></div>
       <div class="change-card"><div class="change-val neutral">154.89 km²</div><div class="change-label">Water area in 2025</div></div>
@@ -603,15 +393,11 @@ html<!DOCTYPE html>
       <div class="change-card"><div class="change-val neutral">150.34 km²</div><div class="change-label">Stable water (both years)</div></div>
       <div class="change-card"><div class="change-val lost">−45.76%</div><div class="change-label">Net % change from 1985</div></div>
     </div>
-
     <p style="margin-top:1.5rem;font-size:13px;color:var(--muted)">Net change: −130.66 km² — representing a loss of nearly half of Lake Powell's 1985 surface water extent over 40 years.</p>
 
     <h2 style="margin-top:3rem">Change map</h2>
     <p>Four-class change map: non-water in both years, stable water, water lost, and water gained.</p>
-    <div class="chart-placeholder" style="min-height:300px;margin-top:1.5rem">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B4B2A9" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <p>water_change_map.png will be embedded here</p>
-    </div>
+    <img src="water_change_map.png" alt="Lake Powell water body change map 1985 to 2025" class="chart-img">
     <div class="legend-row">
       <div class="legend-item"><div class="legend-swatch" style="background:#d4c89a"></div>Non-water (both years)</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#4fc3f7"></div>Stable water</div>
@@ -624,37 +410,17 @@ html<!DOCTYPE html>
 
   <!-- METHODS -->
   <div id="methods" class="section">
-    <p class="section-label">Methodology</p>
-    <h2>Data &amp; methods</h2>
+    <span class="tag ml">Methodology</span>
+    <p class="section-label">Data &amp; methods</p>
+    <h2>Methods overview</h2>
     <ul class="methods-list">
-      <li>
-        <span class="method-num">1</span>
-        <span><strong style="color:var(--text);font-weight:500">SWE data</strong> — Annual SWE averages computed from NRCS SNOTEL stations within each county boundary. Station values averaged to produce county-level and statewide SWE estimates per year.</span>
-      </li>
-      <li>
-        <span class="method-num">2</span>
-        <span><strong style="color:var(--text);font-weight:500">Temperature data</strong> — Annual average temperatures derived from PRISM 4km gridded rasters (county level) and a statewide Colorado average temperature dataset (co_m_temp_1980_2025.csv), clipped to boundaries in GIS.</span>
-      </li>
-      <li>
-        <span class="method-num">3</span>
-        <span><strong style="color:var(--text);font-weight:500">Statistical analysis</strong> — Pearson correlation coefficients computed at both county and statewide scales. Linear regression models (OLS) fitted using scipy.stats.linregress and visualized using matplotlib and Plotly.</span>
-      </li>
-      <li>
-        <span class="method-num">4</span>
-        <span><strong style="color:var(--text);font-weight:500">GEE image extraction</strong> — Landsat 5 TM (June 14, 1985) and Landsat 9 OLI (June 4, 2025) surface reflectance scenes acquired via Google Earth Engine Python API. Exported as 30m GeoTIFFs to Google Drive.</span>
-      </li>
-      <li>
-        <span class="method-num">5</span>
-        <span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel (C=10, gamma='scale') trained on balanced ROI samples. Z-score normalized spectral features across 6 bands. Tile-based prediction applied to full scenes.</span>
-      </li>
-      <li>
-        <span class="method-num">6</span>
-        <span><strong style="color:var(--text);font-weight:500">Change detection</strong> — Binary water masks derived from SVM outputs compared pixel-by-pixel. Water area change quantified in km² accounting for raster CRS and pixel resolution.</span>
-      </li>
-      <li>
-        <span class="method-num">7</span>
-        <span><strong style="color:var(--text);font-weight:500">Significance testing</strong> — Two-tailed p-values reported for county-level correlations. Significance threshold set at α = 0.05. SVM accuracy reported via OA, AA, Cohen's kappa, and per-class F1 scores.</span>
-      </li>
+      <li><span class="method-num">1</span><span><strong style="color:var(--text);font-weight:500">SWE data</strong> — Annual SWE averages computed from NRCS SNOTEL stations within each county boundary. Station values averaged to produce county-level and statewide SWE estimates per year.</span></li>
+      <li><span class="method-num">2</span><span><strong style="color:var(--text);font-weight:500">Temperature data</strong> — Annual average temperatures derived from PRISM 4km gridded rasters (county level) and a statewide Colorado average temperature dataset (co_m_temp_1980_2025.csv), clipped to boundaries in GIS.</span></li>
+      <li><span class="method-num">3</span><span><strong style="color:var(--text);font-weight:500">Statistical analysis</strong> — Pearson correlation coefficients computed at both county and statewide scales. OLS linear regression fitted using scipy.stats.linregress. Statewide: r = −0.637, R² = 0.406, p = 1.93×10⁻⁶, slope = −1.568 in/°C, intercept = 17.380 in, n = 46.</span></li>
+      <li><span class="method-num">4</span><span><strong style="color:var(--text);font-weight:500">GEE image extraction</strong> — Landsat 5 TM (June 14, 1985) and Landsat 9 OLI (June 4, 2025) surface reflectance scenes acquired via Google Earth Engine Python API. Exported as 30m GeoTIFFs to Google Drive.</span></li>
+      <li><span class="method-num">5</span><span><strong style="color:var(--text);font-weight:500">SVM classification</strong> — Support vector machine with RBF kernel (C=10, gamma='scale') trained on balanced ROI samples. Z-score normalized spectral features across 6 bands. Tile-based prediction applied to full scenes.</span></li>
+      <li><span class="method-num">6</span><span><strong style="color:var(--text);font-weight:500">Change detection</strong> — Binary water masks derived from SVM outputs compared pixel-by-pixel. Water area change quantified in km² accounting for raster CRS and pixel resolution.</span></li>
+      <li><span class="method-num">7</span><span><strong style="color:var(--text);font-weight:500">Significance testing</strong> — Two-tailed p-values reported for all correlations. Significance threshold set at α = 0.05. SVM accuracy reported via OA, AA, Cohen's kappa, and per-class F1 scores.</span></li>
     </ul>
   </div>
 
@@ -662,26 +428,33 @@ html<!DOCTYPE html>
 
   <!-- TEAM -->
   <div id="team" class="section">
-    <p class="section-label">Research team</p>
-    <h2>Authors</h2>
+    <span class="tag gee">Research team</span>
+    <p class="section-label">Authors</p>
+    <h2>Contributors</h2>
     <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">AU</div>
-        <div><div class="team-name">Author Name</div><div class="team-role">Lead Researcher</div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar">AU</div>
-        <div><div class="team-name">Author Name</div><div class="team-role">GIS &amp; Data Analysis</div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar">AU</div>
-        <div><div class="team-name">Author Name</div><div class="team-role">Climate Science</div></div>
-      </div>
+      <div class="team-card"><div class="team-avatar">AM</div><div><div class="team-name">Andong Ma</div><div class="team-role">Faculty Mentor</div></div></div>
+      <div class="team-card"><div class="team-avatar">KM</div><div><div class="team-name">Kevin Morales</div><div class="team-role">GIS &amp; Data Analyst</div></div></div>
     </div>
+
+    <h2 style="margin-top:3rem">Replicate this study</h2>
+    <p>All code, data processing scripts, and classification notebooks used in this study are openly available on GitHub. Anyone can clone the repository to reproduce the SWE–temperature regression analysis, the GEE image extraction, and the SVM land cover classification.</p>
+    <a href="https://github.com/Lakevs14/Geospatial-Study" target="_blank" style="
+      display:inline-flex;align-items:center;gap:10px;
+      margin-top:1rem;padding:12px 20px;
+      background:var(--text);color:var(--white);
+      border-radius:10px;text-decoration:none;
+      font-size:14px;font-weight:500;font-family:var(--sans);
+      transition:opacity .2s;
+    " onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      View on GitHub — Lakevs14/Geospatial-Study
+    </a>
   </div>
 
   <footer>
-    <p>Colorado SWE &amp; Temperature Study &nbsp;·&nbsp; Data: <a href="https://www.nrcs.usda.gov/wps/portal/wcc/home/snowClimateMonitoring/snowWaterEquivalent/" target="_blank">NRCS SNOTEL</a> &amp; <a href="https://prism.oregonstate.edu" target="_blank">PRISM Climate Group</a> &amp; <a href="https://www.usgs.gov/landsat-missions" target="_blank">USGS Landsat</a> &amp; <a href="https://earthengine.google.com" target="_blank">Google Earth Engine</a> &nbsp;·&nbsp; <a href="https://github.com" target="_blank">GitHub</a> &nbsp;·&nbsp; &copy; 2025</p>
+    <p>Colorado SWE &amp; Temperature Study &nbsp;·&nbsp; Data: <a href="https://www.nrcs.usda.gov/wps/portal/wcc/home/snowClimateMonitoring/snowWaterEquivalent/" target="_blank">NRCS SNOTEL</a> &amp; <a href="https://prism.oregonstate.edu" target="_blank">PRISM Climate Group</a> &amp; <a href="https://www.usgs.gov/landsat-missions" target="_blank">USGS Landsat</a> &amp; <a href="https://earthengine.google.com" target="_blank">Google Earth Engine</a> &nbsp;·&nbsp; <a href="https://github.com/Lakevs14/Geospatial-Study" target="_blank">GitHub</a> &nbsp;·&nbsp; &copy; 2025</p>
   </footer>
 
   <script>
