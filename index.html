@@ -6,14 +6,6 @@
   <title>Colorado SWE Study</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-      /* Show interactive iframe only on large screens (≥1024px) */
-    .reg-chart-large { display: none; }
-    .reg-chart-small { display: block; }
-
-    @media (min-width: 1024px) {
-      .reg-chart-large { display: block; }
-      .reg-chart-small { display: none; }
-    }
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
       --nav-h:60px;
@@ -241,21 +233,10 @@
 
     <!-- Interactive chart — large screens only; static PNG on smaller screens -->
     <h2 style="margin-top:2.5rem">Regression plots</h2>
-    <p>Dual-panel OLS regression chart for Colorado average temperature and statewide SWE average, 1980–2025. Hover over points for year-by-year values.</p>
+    <p>Dual-panel OLS regression chart for Colorado average temperature and statewide SWE average, 1980–2025.</p>
 
-    <!-- Large screen: interactive Plotly iframe (≥1024px) -->
-    <div class="reg-chart-large" style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-top:1.5rem">
-      <iframe
-        src="combined_regression_plots.html"
-        width="100%"
-        height="540"
-        title="Statewide SWE and Temperature Regression — Interactive Plotly Chart"
-        style="display:block;border:none">
-      </iframe>
 
-    </div>
-
-    <!-- Small/medium screens: static PNG fallback -->
+    <!-- chart -->
     <div class="reg-chart-small" style="margin-top:1.5rem">
       <img
         src="double_plot.png"
