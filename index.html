@@ -6,6 +6,14 @@
   <title>Colorado SWE Study</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+      /* Show interactive iframe only on large screens (≥1024px) */
+    .reg-chart-large { display: none; }
+    .reg-chart-small { display: block; }
+
+    @media (min-width: 1024px) {
+      .reg-chart-large { display: block; }
+      .reg-chart-small { display: none; }
+    }
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
       --nav-h:60px;
@@ -175,6 +183,90 @@
   </div>
 
   <hr class="divider">
+  
+    <!-- STATEWIDE REGRESSION SECTION — paste this block into your existing website -->
+  <div id="statewide" class="section">
+    <span class="tag statewide">Statewide analysis</span>
+    <p class="section-label">Colorado — all stations</p>
+    <h2>Statewide temperature &amp; SWE linear regression</h2>
+    <p>OLS linear regression was applied independently to Colorado average annual temperature and statewide SWE average across all 88 SNOTEL stations from 1980–2025. Both variables were modeled over year using <code style="background:var(--bg);padding:2px 6px;border-radius:4px;font-size:12px">scipy.stats.linregress</code> and visualized as a dual-panel interactive Plotly chart.</p>
+
+    <!-- Regression equation cards -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:2rem">
+
+      <!-- Temperature equation card -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem">
+        <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--blue);margin-bottom:.75rem">Colorado Average Temperature</div>
+        <div style="font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:1rem">y = 0.0227x − 37.9948</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Slope (m)</span><span style="font-weight:500;color:var(--text)">+0.0227 °C / year</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Intercept (b)</span><span style="font-weight:500;color:var(--text)">−37.9948</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">R²</span><span style="font-weight:500;color:var(--text)">0.2496 (25.0%)</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Pearson R</span><span style="font-weight:500;color:var(--text)">+0.4996</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">P-value</span><span style="font-weight:500;color:var(--teal)">4.08 × 10⁻⁴ ✓ significant</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Std. Error</span><span style="font-weight:500;color:var(--text)">0.0059</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Sample size (n)</span><span style="font-weight:500;color:var(--text)">46</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span style="color:var(--muted)">Total gain (46 yrs)</span><span style="font-weight:500;color:var(--blue)">+1.04 °C</span></div>
+        </div>
+      </div>
+
+      <!-- SWE equation card -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem">
+        <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.75rem">Yearly SWE Average</div>
+        <div style="font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:1rem">y = −0.0239x + 53.4903</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Slope (m)</span><span style="font-weight:500;color:var(--text)">−0.0239 in / year</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Intercept (b)</span><span style="font-weight:500;color:var(--text)">+53.4903</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">R²</span><span style="font-weight:500;color:var(--text)">0.0456 (4.6%)</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Pearson R</span><span style="font-weight:500;color:var(--text)">−0.2136</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">P-value</span><span style="font-weight:500;color:var(--amber)">0.154 ✗ not significant</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Std. Error</span><span style="font-weight:500;color:var(--text)">0.0165</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--muted)">Sample size (n)</span><span style="font-weight:500;color:var(--text)">46</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0"><span style="color:var(--muted)">Total loss (46 yrs)</span><span style="font-weight:500;color:var(--red)">−1.10 inches</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interpretation callouts -->
+    <div style="background:var(--teal-light);border-left:4px solid var(--teal);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1.25rem">
+      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--teal);margin-bottom:.4rem">Temperature trend — statistically significant</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:0;max-width:100%">Colorado average temperature has risen approximately <strong style="color:var(--text)">+1.04°C over the 46-year study period</strong> at a rate of +0.023°C per year. This trend is statistically significant (p &lt; 0.001) and the model explains 25% of annual temperature variance — a robust warming signal.</p>
+    </div>
+
+    <div style="background:var(--amber-light);border-left:4px solid var(--amber);border-radius:12px;padding:1.25rem 1.5rem;margin-top:1rem">
+      <div style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:500;color:var(--amber);margin-bottom:.4rem">SWE trend — not statistically significant (p = 0.154)</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:0;max-width:100%">While the regression shows a statewide SWE decline of approximately <strong style="color:var(--text)">−1.10 inches over 46 years</strong>, this trend does not clear the significance threshold. High interannual variability driven by ENSO (El Niño–Southern Oscillation) cycles — which produce large year-to-year swings in Colorado snowpack — introduces substantial noise that the linear model cannot resolve, suppressing the R² to just 4.6%. County-level correlations (e.g., San Juan r = −0.566) are stronger, likely because local topographic controls partially dampen ENSO-driven variance.</p>
+    </div>
+
+    <!-- Interactive chart — large screens only; static PNG on smaller screens -->
+    <h2 style="margin-top:2.5rem">Regression plots</h2>
+    <p>Dual-panel OLS regression chart for Colorado average temperature and statewide SWE average, 1980–2025. Hover over points for year-by-year values.</p>
+
+    <!-- Large screen: interactive Plotly iframe (≥1024px) -->
+    <div class="reg-chart-large" style="background:var(--white);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-top:1.5rem">
+      <iframe
+        src="combined_regression_plots.html"
+        width="100%"
+        height="540"
+        title="Statewide SWE and Temperature Regression — Interactive Plotly Chart"
+        style="display:block;border:none">
+      </iframe>
+      <div style="font-size:12px;color:var(--muted);padding:.65rem 1rem;border-top:0.5px solid var(--border);background:var(--bg)">
+        Interactive chart — combined_regression_plots.html must be in the same directory as this page.
+      </div>
+    </div>
+
+    <!-- Small/medium screens: static PNG fallback -->
+    <div class="reg-chart-small" style="margin-top:1.5rem">
+      <img
+        src="combined_regression_plots.png"
+        alt="Statewide SWE and Temperature Linear Regression 1980–2025"
+        style="width:100%;border-radius:12px;border:0.5px solid var(--border);display:block">
+      <p style="font-size:12px;color:var(--muted);margin-top:.5rem">Static chart — export combined_regression_plots.png from your notebook and place it in the same directory as this page.</p>
+    </div>
+
+  </div>
 
   <!-- STATEWIDE -->
   <div id="statewide" class="section">
